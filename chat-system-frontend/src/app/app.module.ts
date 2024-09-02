@@ -1,20 +1,25 @@
+// src/app/app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
-import { ChatComponent } from './chat/chat.component'; // Add your Chat component here
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChatComponent } from './chat/chat.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes'; // Import your routes here
 
 @NgModule({
   declarations: [
-    AppComponent,   // Root component
-    ChatComponent   // Your Chat component
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule     // Import FormsModule for two-way data binding in templates
+    RouterModule.forRoot(routes) // Use the routes here
   ],
   providers: [],
-  bootstrap: [AppComponent]   // Bootstraps the AppComponent as the root component
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
