@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../services/socket.service';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css'],
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  message = '';
   messages: string[] = [];
-  room = 'general';
+  message: string = '';
 
-  constructor(private socketService: SocketService) {}
+  constructor(private chatService: ChatService) {}
 
   ngOnInit(): void {
-    this.socketService.joinRoom(this.room);
-    this.socketService.onMessage((message) => {
+    this.chatService.messages.subscribe((message: string) => {
       this.messages.push(message);
     });
   }
 
   sendMessage() {
     if (this.message.trim()) {
-      this.socketService.sendMessage(this.room, this.message);
+      this.chatService.sendMessage(this.message);
       this.message = '';
     }
   }

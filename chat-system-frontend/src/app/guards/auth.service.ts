@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  getUserRole() {
+      throw new Error('Method not implemented.');
+  }
   private users = [{ username: 'super', password: '123', role: 'superadmin' }];
 
   login(username: string, password: string): boolean {
